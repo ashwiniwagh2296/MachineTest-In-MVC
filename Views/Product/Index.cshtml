@@ -1,0 +1,62 @@
+﻿@using PagedList; 
+@using PagedList.Mvc;
+@model IPagedList<WebOnlineShop.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddProduct")
+</p>
+<table class="table">
+    <tr>
+        <th>
+             srno   @*@Html.DisplayNameFor(model => model.ProductId)*@
+        </th>
+        <th>
+            Product Id   @*@Html.DisplayNameFor(model => model.ProductId)*@
+        </th>
+        <th>
+         Product Name  @*@Html.DisplayNameForodel => model.ProductName)*@
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>*@
+        <th>
+            Category Name  @*@Html.DisplayNameFor(model => model.CategoryName)*@
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr><td>
+    @Html.DisplayFor(modelItem => item.SerialNum)
+</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdateProduct", new {  id=item.ProductId  }) |
+            @Html.ActionLink("Delete", "DeleteProduct", new {id=item.ProductId })
+        </td>
+    </tr>
+}
+
+</table>
+<div class="pagedList">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+PagedListRenderOptions.PageNumbersOnly)
+</div>
