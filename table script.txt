@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[Category] (
+    [CategoryId]   INT          IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+    [CategoryName] VARCHAR (50) NULL
+);
+
+CREATE TABLE [dbo].[Product] (
+    [ProductId]   INT          IDENTITY (1, 1) NOT NULL,
+    [ProductName] VARCHAR (50) NULL,
+    [CategoryId]  INT          NULL,
+FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
+);
